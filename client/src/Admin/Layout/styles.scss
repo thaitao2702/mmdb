@@ -1,0 +1,53 @@
+@import 'shared/styles/const.scss';
+
+.admin-content-ctn {
+  margin-top: $adminHeaderMenuHeight;
+  margin-left: $adminSideMenuWidth;
+  background-color: #eeeeee;
+  min-height: calc(100vh - $adminHeaderMenuHeight);
+  padding: 20px 20px 40px 20px;
+}
+
+.admin-header-menu {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $adminHeaderMenuHeight;
+  background-color: $white;
+  box-shadow: 0 2px 4px 0 rgb(43 43 43 / 10%);
+}
+
+.admin-header-logo {
+  background-color: $headerBackgroundColor;
+  width: $adminSideMenuWidth;
+  height: $adminHeaderMenuHeight;
+  box-shadow: 0 4px 4px -4px rgb(0 0 0 / 10%);
+}
+
+.admin-side-menu {
+  position: fixed;
+  z-index: 9;
+  top: $adminHeaderMenuHeight;
+  left: 0;
+  height: calc(100vh - $adminHeaderMenuHeight);
+  overflow-y: auto;
+  width: $adminSideMenuWidth;
+  background-color: $headerBackgroundColor;
+  scrollbar-color: #383838, $headerBackgroundColor;
+
+  &::-webkit-scrollbar-track {
+    background-color: $headerBackgroundColor;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: $headerBackgroundColor;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #383838;
+  }
+}

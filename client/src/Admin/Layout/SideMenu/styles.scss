@@ -1,0 +1,29 @@
+@import 'shared/styles/const.scss';
+
+.admin-side-menu {
+    position: fixed;
+    z-index: 9;
+    top: $adminHeaderMenuHeight;
+    left: 0;
+    height: calc(100vh - $adminHeaderMenuHeight);
+    overflow-y: auto;
+    width: $adminSideMenuWidth;
+    background-color: $headerBackgroundColor;
+    scrollbar-color: #383838, $headerBackgroundColor;
+  
+    &::-webkit-scrollbar-track {
+      background-color: $headerBackgroundColor;
+    }
+  
+    &::-webkit-scrollbar {
+      width: 4px;
+      background-color: $headerBackgroundColor;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color:#383838;
+    }
+  }
+  
+  

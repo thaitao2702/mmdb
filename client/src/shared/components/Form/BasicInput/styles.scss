@@ -1,0 +1,43 @@
+@import 'shared/styles/const.scss';
+
+.basic-input {
+  margin-bottom: 15px;
+
+  &__label {
+    display: block;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    padding-bottom: 2px;
+    padding-left: 2px;
+  }
+
+  &__field {
+    border: 1px solid #a6a6a6;
+    width: 100%;
+    height: 31px;
+    padding: 3px 7px;
+    border-radius: 3px;
+
+    &.input-error{
+        border-color: $errBorderColor;
+        box-shadow: 0 0 0 3px rgb(221 0 0 / 10%) inset;
+    }
+
+    &:focus {
+      border-color: #e77600;
+      box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+    }
+  }
+
+  &__tooltip{
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  &__err{
+      color: $errTextColor;
+      margin-top: 5px;
+      font-size: 12px;
+  }
+}

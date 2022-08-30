@@ -1,0 +1,79 @@
+@import 'shared/styles/const.scss';
+
+.c-select-with-search {
+  &__ctn {
+    position: relative;
+    padding: 10px;
+  }
+
+  &__title {
+    font-weight: 700;
+    color: #414141;
+    width: 5%;
+    min-width: 70px;
+  }
+
+  &__add-btn {
+    cursor: pointer;
+    padding: 2px 7px;
+  }
+
+  &__search-input {
+    height: 40px;
+    padding: 0 10px;
+    width: 100%;
+  }
+
+  &__options {
+    position: absolute;
+    z-index: 9;
+    background: #fff;
+    box-shadow: rgb(9 30 66 / 25%) 0px 4px 8px -2px, rgb(9 30 66 / 31%) 0px 0px 1px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+
+    .option {
+      padding: 0 10px;
+      height: 36px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e5e5e5;
+      }
+    }
+  }
+}
+
+.c-selected-option {
+  position: relative;
+  background-color: #474747;
+  color: #e8e8e8;
+  border-radius: 3px;
+  height: 34px;
+  padding: 0 26px 0 12px;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+
+  &__close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &--genre {
+    background: #efd80b;
+    box-shadow: 0 0 5px 0 rgb(43 43 43 / 10%), 0 11px 6px -7px rgb(43 43 43 / 10%);
+    border-radius: 15px;
+    color: white;
+  }
+
+  &--director {
+    padding-left: 0;
+  }
+}

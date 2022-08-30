@@ -1,0 +1,162 @@
+.add-movie-ctn {
+  .movie-actors {
+    margin-top: 20px;
+    border-top: 1px solid grey;
+    padding: 15px 20px;
+
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      height: 40px;
+      background: #2a2a2a;
+      color: #ebebeb;
+      padding: 0 20px 0 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      border-left: 10px solid #f5c518;
+    }
+
+    .abc {
+      padding: 0 10px;
+      border: 1px solid #c3c3c3;
+      height: 38px;
+      box-sizing: content-box;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+}
+
+.abc {
+  width: 350px;
+}
+
+.actor-search-enter {
+  width: 0;
+  opacity: 0;
+  transform: translateY(0);
+}
+.actor-search-enter-active {
+  opacity: 1;
+  width: 350px;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms, width 500ms ease;
+}
+.actor-search-exit {
+  opacity: 1;
+  width: 350px;
+}
+.actor-search-exit-active {
+  width: 0;
+  opacity: 0;
+  transform: translateY(0);
+  transition: transform 500ms, opacity 500ms, width 500ms ease;
+}
+
+.c-actor-list {
+  padding: 20px;
+  border-top: 1px solid #d7d7d7;
+
+  &__add-section {
+    height: 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__list-section {
+    margin-top: 20px;
+  }
+
+  &__search-result {
+    background: white;
+    box-shadow: rgb(9 30 66 / 25%) 0px 4px 8px -2px, rgb(9 30 66 / 31%) 0px 0px 1px;
+    margin-top: 1px;
+  }
+}
+
+.c-actor-info {
+  display: flex;
+  position: relative;
+  align-items: center;
+  background-color: #f6f6f5;
+  border: #fff 1px solid;
+  height: 45px;
+  transition: height, transform 0.3s ease;
+  cursor: pointer;
+
+  &:nth-child(odd) {
+    background-color: #fbfbfb;
+    border: #fff 1px solid;
+  }
+
+  &:hover {
+    background-color: #bcd2d5;
+  }
+
+  &.active {
+    transform: scale(1.05);
+    border: 1px solid #5d5d5d;
+    z-index: 9;
+    background: #242424;
+    color: #efefef;
+    transition: all 0.3s ease;
+  }
+
+  &.c-actor-info-enter,
+  &.c-actor-info-exit.c-actor-info-exit-active {
+    height: 0;
+    opacity: 0;
+    right: -10px;
+    transition: all 0.3s ease;
+  }
+
+  &.c-actor-info-exit,
+  &.c-actor-info-enter.c-actor-info-enter-active {
+    height: 45px;
+    right: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+
+  &__image {
+    height: 100%;
+  }
+
+  &__name {
+    padding: 0 15px;
+    width: 20%;
+  }
+
+  &__role {
+    flex-grow: 1;
+  }
+
+  &__as {
+    width: 10%;
+    max-width: 100px;
+  }
+
+  &__btn-ctn {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+
+  &__btn {
+    width: 50px;
+
+    &--cancel {
+      color: #ec2929;
+    }
+
+    &--ok {
+      color: #ffc800;
+    }
+
+    &--delete {
+      color: #575b63;
+    }
+  }
+}

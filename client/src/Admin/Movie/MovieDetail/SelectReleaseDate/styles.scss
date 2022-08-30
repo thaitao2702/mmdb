@@ -1,0 +1,16 @@
+.c-select-release-date {
+  padding: 15px 10px;
+  color: #414141;
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__date {
+    letter-spacing: 0.5px;
+  }
+
+  &__add-btn {
+    cursor: pointer;
+  }
+}

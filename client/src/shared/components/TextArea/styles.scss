@@ -1,0 +1,21 @@
+@import 'shared/styles/const.scss';
+
+.c-text-area textarea {
+  resize: none;
+  width: 100%;
+  padding: 8px 15px;
+  font-size: 28px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: $white;
+  transition: background 0.1s;
+
+  &:hover:not(:focus) {
+    background: #ebecf0;
+  }
+
+  &:focus {
+    border: 1px solid $yellow;
+  }
+}

@@ -1,0 +1,104 @@
+$textDarkest: #172b4d;
+$textLink: #0052cc;
+$textLight: #8993a4;
+
+$headerBackgroundColor: #121212;
+$hoverBackgroundColor: #252525;
+$yellow: rgb(245, 197, 24);
+$black: #000000;
+$white: #ffffff;
+$errBorderColor: #d00;
+$errTextColor: #c40000;
+
+$beforeLoginLinkColor: #0066c0;
+$beforeLoginLinkHoverColor: #c45500;
+
+$loginBoxWidth: 350px;
+$opacity: 0.54;
+
+$adminSideMenuWidth: 250px;
+$adminHeaderMenuHeight: 70px;
+
+@mixin alignCenterByWidth($width) {
+  width: $width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin font-regular() {
+  font-family: CircularStdBook;
+  font-weight: normal;
+}
+
+@mixin font-bold() {
+  font-family: CircularStdBold;
+  font-weight: normal;
+}
+
+@mixin font-medium() {
+  font-family: CircularStdMedium;
+  font-weight: normal;
+}
+
+$ctn-width: 1280px;
+
+@mixin link($colorValue: $textLink, $hoverColor: $textLink) {
+  cursor: pointer;
+  color: $colorValue;
+  &:hover,
+  &:visited,
+  &:active {
+    color: $colorValue;
+  }
+  &:hover {
+    color: $hoverColor;
+    text-decoration: underline;
+  }
+}
+
+@mixin menu-btn($colorValue: $white, $backgroundColor: $hoverBackgroundColor) {
+  cursor: pointer;
+  color: $colorValue;
+  @include font-medium;
+  border-radius: 3px;
+  &:hover,
+  &:visited,
+  &:active {
+    color: $colorValue;
+  }
+  &:hover {
+    background-color: $backgroundColor;
+  }
+}
+
+@mixin icon-hover-opacity-change($normalOpacity: 0.54, $hoverOpacity: 1) {
+  .svg-icon {
+    opacity: $normalOpacity;
+    transition: opacity 0.2s;
+  }
+
+  &:hover {
+    .svg-icon {
+      opacity: $hoverOpacity;
+    }
+  }
+}
+
+@mixin placeholderColor($colorValue) {
+  ::-webkit-input-placeholder {
+    color: $colorValue !important;
+    opacity: 1 !important;
+  }
+  :-moz-placeholder {
+    color: $colorValue !important;
+    opacity: 1 !important;
+  }
+  ::-moz-placeholder {
+    color: $colorValue !important;
+    opacity: 1 !important;
+  }
+  :-ms-input-placeholder {
+    color: $colorValue !important;
+    opacity: 1 !important;
+  }
+}

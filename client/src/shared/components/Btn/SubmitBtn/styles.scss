@@ -1,0 +1,15 @@
+.c-admin-btn {
+  padding: 0 15px;
+  color: white;
+  background-color: #474747;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.c-admin-btn--submit {
+  background-color: #f5c518;
+}

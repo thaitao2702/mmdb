@@ -1,0 +1,67 @@
+.c-input {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    height: 100%;
+    width: 40px;
+    color: #5e6c84;
+
+    &--preprend {
+      top: 0;
+      left: 0;
+    }
+
+    &--append {
+      top: 0;
+      right: 0;
+    }
+
+    & + input {
+      padding-left: 40px;
+    }
+  }
+
+  &__input {
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
+    border-radius: 3px;
+    border: 1px solid #dfe1e6;
+    color: #172b4d;
+    background: #f4f5f7;
+    transition: background 0.1s;
+    font-size: 16px;
+
+    &:hover {
+      background: #ebecf0;
+    }
+
+    &:focus {
+      background: #fff;
+      border: 1px solid #f5c518;
+      box-shadow: 0 0 0 1px #f5c518;
+    }
+  }
+
+  &--transparent-no-border {
+    .c-input__input {
+      background: transparent;
+      border: none;
+
+      &:focus {
+        border: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &--text-white {
+    .c-input__input {
+      color: #efefef;
+    }
+  }
+}

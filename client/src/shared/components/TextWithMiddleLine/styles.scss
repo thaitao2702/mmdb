@@ -1,0 +1,23 @@
+@import 'shared/styles/const.scss';
+
+.text-with-middle-line{
+    height: 30px;
+    font-size: 14px;
+    position: relative;
+
+    & > div{
+        padding: 0 8px;
+        background-color: $white;
+        z-index: 2;
+    }
+
+    &:after{
+        display: block;
+        content: '';
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        border-top: 1px solid #e7e7e7;
+        z-index: 1;
+    }
+}

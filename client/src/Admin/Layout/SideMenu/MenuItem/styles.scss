@@ -1,0 +1,77 @@
+@import 'shared/styles/const.scss';
+
+.side-menu-item {
+  display: block;
+  position: relative;
+  color: #b7c0cd;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+
+  &.main-menu {
+    > .side-menu-item__title {
+      height: 50px;
+    }
+
+    &:hover {
+      color: $white;
+    }
+
+    &.active,
+    &.open {
+      background-color: #242424;
+      border-left: 2px solid #f5c518;
+
+      & + .side-menu-item__sub-menu {
+        border-left: 2px solid #f5c518;
+      }
+    }
+  }
+
+  &__title {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  &__sub-menu {
+    background-color: #363636;
+
+    .side-menu-item {
+      padding-left: 8px;
+
+      &:hover,
+      &.active {
+        background: #eeeeee;
+        color: #1d1d1d;
+      }
+    }
+  }
+
+  .collapse-indicator {
+    position: absolute;
+    right: 10px;
+  }
+}
+
+.sub-menu-enter {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(0);
+}
+.sub-menu-enter-active {
+  opacity: 1;
+  max-height: 2000px;
+  transform: translateY(0);
+  transition: opacity 500ms, transform 500ms, max-height 500ms ease;
+}
+.sub-menu-exit {
+  max-height: 2000px;
+  opacity: 1;
+}
+.sub-menu-exit-active {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(0);
+  transition: transform 500ms, opacity 500ms, max-height 500ms ease;
+}

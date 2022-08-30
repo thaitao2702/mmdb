@@ -1,0 +1,13 @@
+@import 'shared/styles/const.scss';
+
+.search-input-ctn{
+    height: 32px;
+    background-color: $white;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 2px solid transparent;
+
+    &.input-focus{
+        border: 2px solid $yellow;
+    }
+}

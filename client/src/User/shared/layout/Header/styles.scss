@@ -1,0 +1,13 @@
+@import 'shared/styles/const.scss';
+
+.header{    
+    background-color: $headerBackgroundColor;
+    color: $white;
+    font-size:14px;
+    padding: 5px;
+}
+
+.main-menu-wrapper{
+    max-width: $ctn-width;
+    margin: auto;
+}
