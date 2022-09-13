@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { constraint, validate } from 'shared/utils/validations';
 import BasicInput from 'shared/components/Form/BasicInput';
@@ -9,6 +9,19 @@ import { AuthBtn } from 'shared/components/Btn';
 import { useApi } from 'shared/hooks/api';
 import useToast from 'shared/hooks/toast';
 import { ApiUrl } from 'shared/config/apiUrl';
+import { storeAuthData } from 'shared/utils/auth';
+import { UserRole } from 'shared/const';
+
+export interface IUser {
+  name: string;
+  email: string;
+  id: string | number;
+}
+export interface IRegisterResponse {
+  user: IUser;
+  token: string;
+  userRole: UserRole;
+}
 
 interface IFormValue {
   [key: string]: any;
@@ -36,10 +49,20 @@ const initialValues = {
 const Register = () => {
   const [state, callSignUpApi] = useApi('post', ApiUrl.signUp);
   const Toast = useToast();
+  const navigate = useNavigate();
+
+  const persistLoginData = (userData: IRegisterResponse) => {
+    const data = {
+      userId: userData.user.id,
+      token: userData.token,
+      userRole: userData.userRole,
+    };
+    storeAuthData(data);
+  };
 
   return (
-    <div className="before-login-box-ctn content-ctn">
-      <div className="register-box">
+    <div className="c-before-login-register l-before-login-content-ctn">
+      <div className="c-before-login-register__content">
         <div className="main-heading">Create account</div>
         <Formik
           enableReinitialize
@@ -47,10 +70,10 @@ const Register = () => {
           validate={formValidate}
           onSubmit={async (value) => {
             try {
-              const data = await callSignUpApi(value);
-              console.log(data);
-              console.log(state);
+              const data = (await callSignUpApi(value)) as IRegisterResponse;
               Toast.success('Register success');
+              persistLoginData(data);
+              setTimeout(() => navigate('/'), 500);
             } catch (err) {
               Toast.error((err as { message: string }).message);
               console.log(err);

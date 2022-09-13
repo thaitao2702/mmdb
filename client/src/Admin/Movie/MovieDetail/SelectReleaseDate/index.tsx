@@ -7,14 +7,14 @@ import { InlineIcon } from 'shared/components/Icon';
 import './styles.scss';
 
 interface IReleaseDateProps {
-  date?: string | Date;
+  date?: string | Date | null;
   onChange?: (...args: any[]) => any;
 }
 
 type IOnChange = NonNullable<Flatpickr['props']['onChange']>;
 
 const SelectReleaseDate = ({ date: propDate, onChange }: IReleaseDateProps) => {
-  const date = propDate ? new Date(propDate) : undefined;
+  const date = propDate ? new Date(propDate) : null;
   const prevDate = useRef(date);
   const $flatpickrRef = useRef<Flatpickr>(null);
 

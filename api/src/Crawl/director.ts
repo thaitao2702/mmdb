@@ -20,7 +20,6 @@ export const crawlDirector = (directorId: string) => {
         const birthDate = getBirthDate($);
         const name = getName($);
         const data = {
-          id: directorId,
           name,
           avatar: avatarPath,
           overView,

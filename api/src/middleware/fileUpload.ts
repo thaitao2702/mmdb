@@ -87,6 +87,7 @@ export const parsePostFormData = asyncCatchErr((req, res, next) => {
     return prev;
   }, {} as { [key: string]: any });
   req.body = parsedData;
+
   next();
 });
 

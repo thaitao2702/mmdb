@@ -17,6 +17,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": false,
     "sourceMap": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
@@ -24,8 +25,8 @@
     "paths": {
       "@assets/*": ["assets/*"],
       "@root/*": ["/*"],
-      "*": ["./*"],
-    },
+      "*": ["./*"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]

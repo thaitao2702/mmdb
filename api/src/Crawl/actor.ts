@@ -5,7 +5,6 @@ import * as fs from "fs";
 import { Actor } from "entities";
 
 import { createEntity } from "utils/entityHandler";
-import { first } from "cheerio/lib/api/traversing";
 
 export const crawlActor = (actorId: string) => {
   const actorLink = "https://www.imdb.com" + "/name/" + actorId;
@@ -21,7 +20,6 @@ export const crawlActor = (actorId: string) => {
         const birthPlace = getBirthPlace($);
         const birthDate = getBirthDate($);
         const data = {
-          id: actorId,
           name,
           avatar: avatarPath,
           overView,

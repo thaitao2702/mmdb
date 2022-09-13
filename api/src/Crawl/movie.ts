@@ -2,12 +2,12 @@ import * as cheerio from "cheerio";
 import * as request from "request-promise";
 import * as fs from "fs";
 
-import { crawlActor } from "Crawl/actor";
+import { crawlActor } from "crawl/actor";
 import { Movie, ActorRoleMovie } from "../entities";
 import { createEntity } from "../utils/entityHandler";
 
 import { MovieCategory } from "const/movie";
-import { crawlDirector } from "Crawl/director";
+import { crawlDirector } from "crawl/director";
 
 export const crawlMovie = (
   linkList: { movieId: string; movieLink: string }[]
@@ -40,7 +40,6 @@ export const crawlMovie = (
       const releasedDate = getReleaseDate($);
 
       const data = {
-        id: movie.movieId,
         title,
         plot,
         poster,
@@ -53,19 +52,25 @@ export const crawlMovie = (
         runtime,
       };
 
-      await createEntity(Movie, data);
-      console.log("created movie " + title);
-      console.log("----------------------------------------------------");
+      const movieInstance = await createEntity(Movie, data);
 
       await Promise.all(
-        casts.map((cast) => (cast ? createEntity(ActorRoleMovie, cast) : null))
+        casts.map((cast) => {
+          if (cast) {
+            cast.movieId = movieInstance.id;
+            createEntity(ActorRoleMovie, cast);
+          }
+          return cast;
+        })
       );
       //fs.writeFileSync("data.json", JSON.stringify(cast));
+      console.log("created movie " + title);
+      console.log("----------------------------------------------------");
 
       const newLinkList = linkList.slice(1);
       setTimeout(() => {
         crawlMovie(newLinkList);
-      }, 500);
+      }, 100);
     })
     .catch((error: any) => console.log(error));
 };
@@ -109,7 +114,6 @@ const getReleaseDate = ($: cheerio.CheerioAPI) => {
     const date = text.split("(")[0].trim();
     if (date) {
       let releaseDate = new Date(date);
-      console.log(`release dated ${date}`);
       releaseDate =
         releaseDate instanceof Date && !isNaN(Number(releaseDate))
           ? releaseDate
@@ -206,10 +210,7 @@ const getCast = (
 
     const actorRoleMovie = new ActorRoleMovie();
     actorRoleMovie.role = actorRole;
-    actorRoleMovie.movieId = movieId;
-    actorRoleMovie.movieTitle = movieTitle;
-    actorRoleMovie.actorId = actorId;
-    actorRoleMovie.actorName = actorName;
+    actorRoleMovie.actorId = createdActor.id;
     return actorRoleMovie;
   });
 

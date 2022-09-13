@@ -20,17 +20,13 @@ export const deleteFile = async (path: string) => {
   }
 };
 
-export const getMoviePosterPath = (
-  movieId: string | number,
-  fileExtension: string
-) => {
-  const servePath =
-    (process.env.IMAGE_PATH || "") +
-    `/movie-poster_${movieId}.${fileExtension}`;
+export const generateFilePath = (fileExtension: string) => {
+  const id = genereteUID();
+  const servePath = (process.env.IMAGE_PATH || "") + `/${id}.${fileExtension}`;
   const realPath =
     (process.env.PUBLIC_PATH || "") +
     (process.env.IMAGE_PATH || "") +
-    `/movie-poster_${movieId}.${fileExtension}`;
+    `/${id}.${fileExtension}`;
   return [servePath, realPath];
 };
 
@@ -39,3 +35,7 @@ export const isSamePath = (path1: string, path2: string) =>
 
 export const servePathToRealPath = (servePath: string) =>
   servePath ? path.join(process.env.PUBLIC_PATH || "public", servePath) : "";
+
+export const genereteUID = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};

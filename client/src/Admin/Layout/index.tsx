@@ -7,17 +7,17 @@ import './styles.scss';
 
 const AdminLayout = () => {
   return (
-    <>
-      <div className="admin-header-menu">
-        <div className="admin-header-logo flex-vertical-center">
+    <div className="l-admin">
+      <div className="c-admin-header-menu">
+        <div className="c-admin-header-logo flex-vertical-center">
           <Logo width={80} height={40} customStyle={{ marginLeft: '20px' }}></Logo>
         </div>
       </div>
       <AdminSideMenu />
-      <div className="admin-content-ctn">
+      <div className="l-admin-content-ctn">
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
 

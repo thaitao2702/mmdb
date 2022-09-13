@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import MovieDetail, { IMovieData, defaultMovieData } from 'admin/Movie/MovieDetail';
 import { SubmitBtn } from 'shared/components/Btn';
@@ -17,14 +17,12 @@ interface IResponseCreateMovie {
 const AddMovie = () => {
   const [movieData, setMovieData] = useState<IMovieData>(defaultMovieData);
   console.log(movieData);
-  const { movieId } = useParams();
-  const [{ loading }, createNewMovie] = useUploadApi('post', `${ApiUrl.movies}/${movieId}`);
+  const [{ loading }, createNewMovie] = useUploadApi('post', `${ApiUrl.movies}`);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const submit = async () => {
     if (movieData) {
-      console.log('movie data', movieData);
-
       let formData = new FormData();
       Object.keys(movieData).forEach((key) => {
         const data = JSON.stringify((movieData as { [key: string]: any })[key]);
@@ -34,12 +32,12 @@ const AddMovie = () => {
       try {
         const response = (await createNewMovie(formData)) as IResponseCreateMovie;
         if (response.success) {
-          toast.success('Update Movie Success');
-          console.log('response ', response);
-          setMovieData(response.data);
+          const movieId = response.data.id;
+          toast.success('Create Movie Success');
+          navigate('/admin/movie/edit-movie/' + movieId);
         }
       } catch (error) {
-        if ('message' in error) toast.error((error as { message: string }).message);
+        if (error && error.message) toast.error(error.message);
         console.log('err', error);
       }
     }
@@ -66,7 +64,7 @@ const BtnsBlock = ({ onSubmit, isCreating }: IBtnsBlock) => {
     <div className="l-control-btn-ctn">
       <SubmitBtn
         onClick={onSubmit}
-        className="c-admin-btn--submit mr-9"
+        className="c-admin-btn--submit"
         disabled={isCreating}
         renderPrepend={isCreating && <Spinner size={25} color="white" className="mr-6"></Spinner>}
       >

@@ -1,6 +1,14 @@
 export { default as MenuIcon } from './MenuIcon';
 export { default as AddToWatchListIcon } from './AddToWatchList';
 export { default as IMDbProIcon } from './IMDbProIcon';
-export { default as StarIcon } from './star';
+export { default as StarIcon } from './Star';
 export { default as SearchIcon } from './SearchIcon';
 export { default as Logo } from './Logo';
+export { default as Ribbon } from './Ribbon';
+export { default as PlayIcon } from './Play';
+export { default as Loader } from './Loader';
+export { default as ErrorFace } from './ErrorFace';
+export { default as Videos } from './Videos';
+export { default as Photos } from './Photos';
+export { StarOIcon as StarOIcon } from './Star';
+export { default as UserIcon } from './UserIcon';

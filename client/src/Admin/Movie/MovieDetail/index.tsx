@@ -16,17 +16,17 @@ import { handleImageUrl } from 'shared/utils';
 
 export interface IMovieData {
   [key: string]: any;
-  id?: string | number;
-  actors: IActorRoleMovie[];
-  title: string;
-  plot: string;
-  poster: string;
-  writers: string[];
+  id?: number | null;
+  actors: IActorRoleMovie[] | null;
+  title: string | null;
+  plot: string | null;
+  poster: string | null;
+  writers: string[] | null;
   movieCategory: string[];
   director: IDirector | null;
-  rating?: number;
-  numberOfVotes?: number;
-  releasedDate: string | Date;
+  rating: number | null;
+  numberOfVotes: number | null;
+  releasedDate: string | Date | null;
 }
 
 type IMovieDetailProps = {
@@ -37,18 +37,18 @@ type IMovieDetailProps = {
 
 type setMovieDataFunc = React.Dispatch<React.SetStateAction<IMovieData>>;
 
-export const defaultMovieData = {
-  id: '',
+export const defaultMovieData: IMovieData = {
+  id: null,
   actors: [] as IActorRoleMovie[],
   title: '',
-  plot: '',
-  poster: '',
+  plot: null,
+  poster: null,
   writers: [] as string[],
   movieCategory: [] as string[],
   director: null,
-  rating: undefined,
-  numberOfVotes: undefined,
-  releasedDate: '',
+  rating: null,
+  numberOfVotes: null,
+  releasedDate: null,
 };
 
 const MovieDetail = ({ movie, setMovieData, renderControlBtns }: IMovieDetailProps) => {
@@ -74,7 +74,7 @@ const MovieDetail = ({ movie, setMovieData, renderControlBtns }: IMovieDetailPro
     setMovieData((prev) => ({
       ...prev,
       title: value,
-      actors: actors?.map((actor) => ({ ...actor, movieTitle: value } || [])),
+      actors: (actors || []).map((actor) => ({ ...actor, movieTitle: value } || [])),
     }));
   };
   const updateMoviePlot = (value: string) => {
@@ -117,13 +117,14 @@ const MovieDetail = ({ movie, setMovieData, renderControlBtns }: IMovieDetailPro
   }, [plot]);
 
   return (
-    <div className="c-movie-detail">
+    <div className="c-movie-detail admin-panel">
       <div className="c-movie-detail__movie-summarize">
         <div className="l-row l-row--movie-summarize">
           <TextArea
             onChange={updateMovieTitle}
             ref={$movieTitleRef}
             placeholder="Movie Title"
+            className="c-movie-detail__title"
           ></TextArea>
           {rating && numberOfVotes && (
             <IMDbRating rating={rating} voteCount={numberOfVotes}></IMDbRating>
@@ -174,12 +175,7 @@ const MovieDetail = ({ movie, setMovieData, renderControlBtns }: IMovieDetailPro
           </div>
         </div>
       </div>
-      <ActorList
-        actors={actors}
-        movieTitle={title || ''}
-        onChange={updateActorList}
-        movieId={id || ''}
-      ></ActorList>
+      <ActorList actors={actors} movieId={id} onChange={updateActorList}></ActorList>
 
       <div className="c-movie-detail__control-btn-ctn">{renderControlBtns}</div>
     </div>

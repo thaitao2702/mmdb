@@ -1,0 +1,53 @@
+@import 'shared/styles/const.scss';
+
+.c-side-slide-item {
+  display: flex;
+  position: relative;
+  padding: 0 16px;
+  line-height: 20px;
+
+  &__img-ctn {
+    width: 23%;
+    padding-top: 16px;
+  }
+
+  &__img {
+    width: 100%;
+    aspect-ratio: 140/207;
+    height: 100%;
+    display: block;
+  }
+
+  &__info {
+    position: absolute;
+    left: calc(23% + 16px);
+    top: 0;
+    right: 0;
+    padding: 16px 8px 0;
+
+    &:hover .c-side-slide-item__play-icon {
+      color: $yellow;
+    }
+  }
+
+  &__name {
+    letter-spacing: 0.15px;
+  }
+
+  &__description {
+    width: 100%;
+    font-size: 14px;
+    color: $subTextColor;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__duration {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: $subTextColor;
+    overflow: hidden;
+    display: inline-block;
+  }
+}

@@ -8,7 +8,6 @@ html,
 }
 
 body {
-  color: $textDarkest;
   -webkit-tap-highlight-color: transparent;
   line-height: 1.2;
   font-size: 16px;
@@ -154,7 +153,6 @@ html {
 
 body {
   margin: 0;
-  color: #172b4d;
 }
 main {
   display: block;
@@ -300,6 +298,48 @@ template {
   cursor: pointer;
 }
 
+.rating-star {
+  color: $yellow;
+
+  &--blue {
+    color: $starBlue;
+  }
+}
+
+.c-point-divider {
+  & + .c-point-divider:before {
+    display: inline-block;
+    margin: 0 0.5rem 0.2rem;
+    content: '';
+    font-size: 1rem;
+    line-height: 0.5rem;
+    padding: 1px;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: currentColor;
+  }
+}
+
+.c-vertical-divider {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  width: 1px;
+  height: 2rem;
+  margin: 0px 0.25rem;
+
+  &--grey {
+    border-color: #c4c4c4;
+  }
+}
+
+.l-before-login-ctn {
+  color: $textDarkest;
+  color: #172b4d;
+}
+
+.l-user-ctn {
+  color: $white;
+}
+
 .divider-inner {
   height: 44px;
   margin-bottom: -18px;
@@ -329,12 +369,43 @@ template {
   font-size: 28px;
 }
 
+.admin-panel {
+  -webkit-box-shadow: 0 0 5px 0 rgb(43 43 43 / 10%), 0 11px 6px -7px rgb(43 43 43 / 10%);
+  box-shadow: 0 0 5px 0 rgb(43 43 43 / 10%), 0 11px 6px -7px rgb(43 43 43 / 10%);
+  background: $white;
+  border-radius: 5px;
+  padding: 10px 0;
+}
+
+.underline-link {
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &--blue {
+    color: $starBlue;
+
+    &:hover {
+      color: $starBlue;
+    }
+  }
+}
+
 .hide {
   display: none !important;
 }
 
-.menu-btn--hover-icon-lighter {
-  @include icon-hover-opacity-change;
+.text-center {
+  text-align: center;
+}
+
+.flip {
+  transform: scale(1);
+  transition: all 0.17s;
+
+  &.active {
+    transform: scale(-1);
+  }
 }
 
 @include placeholderColor($textLight);
@@ -368,6 +439,15 @@ $step: 6;
   }
 }
 
+@mixin flex-grow {
+  @for $i from 1 through $step {
+    .l-flex-grow--#{$i} {
+      flex-grow: #{$i};
+    }
+  }
+}
+
 @include margin-top;
 @include margin-right;
 @include margin-left;
+@include flex-grow;

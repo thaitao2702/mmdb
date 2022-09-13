@@ -1,13 +1,13 @@
 @import 'shared/styles/const.scss';
 
-.toast-ctn {
+.l-toast-ctn {
   position: fixed;
   top: 20px;
   right: 40px;
   z-index: 99;
 }
 
-.toast {
+.c-toast {
   position: relative;
   border-radius: 3px;
   color: $white;
@@ -18,15 +18,15 @@
   min-width: 200px;
   box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
 
-  &.toast-error {
+  &--error {
     background-color: #eb5757;
   }
 
-  &.toast-success {
+  &--success {
     background-color: #6fcf97;
   }
 
-  &.toast-warning {
+  &--warning {
     background-color: #f2c94c;
   }
 

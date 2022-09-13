@@ -10,6 +10,8 @@ import {
   MovieDetails,
   ActorRoleMovie,
   Director,
+  Trailer,
+  MovieRating,
 } from "entities";
 import { validate } from "utils/validation";
 import { BaseEntity, FindOneOptions } from "typeorm";
@@ -21,7 +23,9 @@ type EntityConstructor =
   | typeof UserReview
   | typeof MovieDetails
   | typeof ActorRoleMovie
-  | typeof Director;
+  | typeof Trailer
+  | typeof Director
+  | typeof MovieRating;
 type EntityInstance =
   | User
   | Movie
@@ -29,7 +33,9 @@ type EntityInstance =
   | UserReview
   | MovieDetails
   | ActorRoleMovie
-  | Director;
+  | Trailer
+  | Director
+  | MovieRating;
 
 const entities: { [key: string]: EntityConstructor } = {
   User,
@@ -39,11 +45,13 @@ const entities: { [key: string]: EntityConstructor } = {
   MovieDetails,
   ActorRoleMovie,
   Director,
+  Trailer,
+  MovieRating,
 };
 
 export const findEntities = async <T extends typeof BaseEntity>(
   Constructor: T,
-  options: FindManyOptions<InstanceType<T>>
+  options?: FindManyOptions<InstanceType<T>>
 ): Promise<InstanceType<T>[]> => {
   const instance = await Constructor.find(options);
   if (!instance) {
@@ -124,3 +132,17 @@ export const deleteEntity = async <T extends EntityConstructor>(
   await instance.remove();
   return instance;
 };
+
+export const createListById = <T extends EntityInstance>(list: T[]) =>
+  list.reduce((prev, curr) => {
+    prev[curr.id] = curr;
+    return prev;
+  }, {} as { [key: number]: any });
+
+export const createListByMovieId = <T extends MovieRating | ActorRoleMovie>(
+  list: T[]
+) =>
+  list.reduce((prev, curr) => {
+    prev[curr.movieId] = curr;
+    return prev;
+  }, {} as { [key: number]: any });

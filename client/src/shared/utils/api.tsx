@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getAuthToken } from 'shared/utils/token';
+import { getAuthToken } from 'shared/utils/auth';
 import { IApiMethods } from 'shared/types';
 
 export const apiMethods: { [K in IApiMethods]: IApiMethods } = {

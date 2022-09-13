@@ -1,8 +1,52 @@
-.modal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(9, 30, 66, 0.54);;
+.c-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translateY(0);
+
+  &__overlay {
+    min-height: 100%;
+    background: rgb(0 0 0 / 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+  }
+
+  &__ctn {
+    transition: all 0.3s ease;
+  }
+
+  &-enter {
+    opacity: 0;
+
+    .c-modal__ctn {
+      transform: scale(0.8);
+    }
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.3s ease;
+
+    .c-modal__ctn {
+      transform: scale(1);
+    }
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
 }

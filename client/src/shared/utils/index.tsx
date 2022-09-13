@@ -2,7 +2,8 @@ export const getKeyFromEnum = (en: Object) => {
   return Object.keys(en).filter((key) => isNaN(Number(key)));
 };
 
-export const handleImageUrl = (url: string) => (url ? 'http://localhost:3000' + url : '');
+export const handleImageUrl = (url: string) =>
+  url ? (!url.startsWith('http://localhost:3000') ? 'http://localhost:3000' + url : url) : '';
 
 export const dataURItoBlob = (dataURI: string) => {
   // convert base64/URLEncoded data component to raw binary data held in a string
@@ -20,4 +21,17 @@ export const dataURItoBlob = (dataURI: string) => {
   }
 
   return new Blob([ia], { type: mimeString });
+};
+
+export const getYearFromDate = (date: string | Date) =>
+  date ? new Date(date).getFullYear() : null;
+
+export const getRuntimeText = (runtime: string | number) => {
+  if (!runtime) return null;
+  const runtimeNumber = Number(runtime);
+  const hours = Math.floor(runtimeNumber / 60);
+  const minutes = runtimeNumber - hours * 60;
+  const hoursText = hours ? hours + 'h' : '';
+  const minutesText = minutes ? minutes + 'm' : '';
+  return hoursText + (hours ? ' ' : '') + minutesText;
 };

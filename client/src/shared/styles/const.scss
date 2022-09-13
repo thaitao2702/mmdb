@@ -7,8 +7,10 @@ $hoverBackgroundColor: #252525;
 $yellow: rgb(245, 197, 24);
 $black: #000000;
 $white: #ffffff;
+$subTextColor: rgba(255, 255, 255, 0.7);
 $errBorderColor: #d00;
 $errTextColor: #c40000;
+$starBlue: #5799ef;
 
 $beforeLoginLinkColor: #0066c0;
 $beforeLoginLinkHoverColor: #c45500;
@@ -72,13 +74,13 @@ $ctn-width: 1280px;
 }
 
 @mixin icon-hover-opacity-change($normalOpacity: 0.54, $hoverOpacity: 1) {
-  .svg-icon {
+  .c-menu-btn__icon {
     opacity: $normalOpacity;
     transition: opacity 0.2s;
   }
 
   &:hover {
-    .svg-icon {
+    .c-menu-btn__icon {
       opacity: $hoverOpacity;
     }
   }

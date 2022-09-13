@@ -5,3 +5,5 @@ export { default as MovieDetails } from "./MovieDetails";
 export { default as User } from "./User";
 export { default as UserReview } from "./UserReview";
 export { default as ActorRoleMovie } from "./ActorRoleMovie";
+export { default as Trailer } from "./Trailer";
+export { default as MovieRating } from "./MovieRating";

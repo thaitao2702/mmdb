@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { constraint, validate } from 'shared/utils/validations';
 import BasicInput from 'shared/components/Form/BasicInput';
@@ -10,16 +11,14 @@ import TextWithMiddleLine from 'shared/components/TextWithMiddleLine';
 import { useApi } from 'shared/hooks/api';
 import useToast from 'shared/hooks/toast';
 import { ApiUrl } from 'shared/config/apiUrl';
-import { storeAuthToken } from 'shared/utils/token';
+import { storeAuthData } from 'shared/utils/auth';
+import { IRegisterResponse } from 'auth/Register';
 
 interface IFormValue {
   [key: string]: any;
 }
 
-interface ILoginResponse {
-  user: object;
-  token: string;
-}
+type ILoginResponse = IRegisterResponse;
 
 const formValidate = (value: IFormValue) =>
   validate(value, {
@@ -36,13 +35,25 @@ const Login = () => {
   const [state, callLoginApi] = useApi('post', ApiUrl.login);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const Toast = useToast();
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (emailInputRef.current) emailInputRef.current.focus();
   }, []);
 
+  const persistLoginData = (userData: IRegisterResponse) => {
+    const data = {
+      userId: userData.user.id,
+      token: userData.token,
+      userRole: userData.userRole,
+      name: userData.user.name,
+    };
+    storeAuthData(data);
+  };
+
   return (
-    <div className="before-login-box-ctn content-ctn">
-      <div className="login-box">
+    <div className="c-before-login-login l-before-login-content-ctn">
+      <div className="c-before-login-login__content">
         <div className="main-heading">Sign-In</div>
         <Formik
           enableReinitialize
@@ -51,11 +62,9 @@ const Login = () => {
           onSubmit={async (value) => {
             try {
               const data = (await callLoginApi(value)) as ILoginResponse;
-              console.log(data);
-              console.log(state);
-              const authToken = data.token;
-              if (authToken) storeAuthToken(authToken);
+              persistLoginData(data);
               Toast.success('Login success');
+              setTimeout(() => navigate('/'), 500);
             } catch (err) {
               console.log('err', err);
               Toast.error((err as { message: string }).message);
@@ -89,17 +98,6 @@ const Login = () => {
         <NavLink to="/auth/register" className="header__item mt-5">
           <AuthBtn>Create your IMDb accout</AuthBtn>
         </NavLink>
-        <button
-          onClick={() =>
-            Toast.success(
-              'Toast success Toast success Toast successToast success Toast success Toast success Toast success Toast success Toast success',
-            )
-          }
-        >
-          Toast success
-        </button>
-        <button onClick={() => Toast.error('toast error')}>Toast error</button>
-        <button onClick={() => Toast.warning('toast warning')}>Toast warning</button>
       </div>
     </div>
   );

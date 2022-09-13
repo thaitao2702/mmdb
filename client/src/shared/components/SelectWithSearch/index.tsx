@@ -6,7 +6,7 @@ import { InlineIcon } from 'shared/components/Icon';
 import PageLoader from 'shared/components/PageLoader';
 import NoResultFound from 'shared/components/NoResultFound';
 
-import useOnOutsideClick from 'shared/hooks/onOutSiteClick';
+import useOnOutsideClick from 'shared/hooks/onOutSideClick';
 
 interface ISelectWithSearchProps {
   [key: string]: any;

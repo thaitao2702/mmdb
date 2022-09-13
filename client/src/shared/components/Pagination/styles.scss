@@ -1,0 +1,99 @@
+@import 'shared/styles/const.scss';
+
+.c-pagination {
+  background: $white;
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  box-shadow: 1px 0 20px -10px rgb(43 43 43 / 10%), -2px 3px 11px 0px rgb(43 43 43 / 10%);
+
+  &__btn {
+    width: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #848484;
+    border-radius: 4px;
+    padding: 4px 0;
+    margin: 0 0.25rem;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      background-color: #474747;
+      color: $white;
+      transition: all 0.2s ease;
+    }
+
+    &:active {
+      background-color: rgb(71 71 71 / 80%);
+      color: $white;
+      transition: all 20ms ease;
+    }
+
+    &.active {
+      background-color: #474747;
+      color: $white;
+    }
+  }
+}
+
+.c-goto-page-panel {
+  position: absolute;
+  top: 100%;
+  display: flex;
+  background: white;
+  padding: 4px 8px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  margin-top: 10px;
+
+  &-ctn {
+    display: inline-flex;
+    position: relative;
+  }
+
+  &__btn {
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    background-color: #474747;
+    color: $white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(71 71 71 / 95%);
+      color: $white;
+      transition: all 20ms ease;
+    }
+  }
+
+  & > input {
+    width: 40px;
+    color: #848484;
+    border: 1px solid #dedede;
+    margin-right: 5px;
+    border-radius: 2px;
+  }
+
+  &-enter {
+    opacity: 0;
+    .c-modal__ctn {
+      transform: scale(0.8);
+    }
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.3s ease;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+}

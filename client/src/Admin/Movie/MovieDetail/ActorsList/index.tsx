@@ -11,7 +11,7 @@ import PageLoader from 'shared/components/PageLoader';
 
 import { useApi } from 'shared/hooks/api';
 import usePreventRaceCondition from 'shared/hooks/api/preventRaceCondition';
-import onOutSiteClick from 'shared/hooks/onOutSiteClick';
+import onOutSiteClick from 'shared/hooks/onOutSideClick';
 import { ApiUrl } from 'shared/config/apiUrl';
 import { handleImageUrl } from 'shared/utils';
 
@@ -29,13 +29,12 @@ interface IGetActorsResponse {
 }
 
 interface IActorListProps {
-  actors?: IActorRoleMovie[];
-  movieId: string | number;
-  movieTitle: string;
+  movieId?: number | null;
+  actors?: IActorRoleMovie[] | null;
   onChange?: (...args: any[]) => any;
 }
 
-const ActorList = ({ actors, movieId, onChange, movieTitle }: IActorListProps) => {
+const ActorList = ({ actors, onChange, movieId }: IActorListProps) => {
   const isControlled = actors != undefined;
   const $inputRef = useRef<HTMLInputElement>(null);
   const [searchResultActors, setSearchResultActors] = useState<IActorRoleMovie[]>([]);
@@ -80,10 +79,9 @@ const ActorList = ({ actors, movieId, onChange, movieTitle }: IActorListProps) =
         const processedData = response.data.map((actor) => ({
           actorName: actor.name,
           actorId: actor.id,
+          movieId,
           avatar: handleImageUrl(actor.avatar),
           role: '',
-          movieId: movieId,
-          movieTitle: movieTitle,
         }));
         setSearchResultActors(processedData);
       }

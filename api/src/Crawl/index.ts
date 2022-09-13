@@ -6,12 +6,13 @@ import * as request from "request-promise";
 import * as fs from "fs";
 
 import initDatabase from "../database/createConnection";
-import { crawlMovie } from "Crawl/movie";
-import { crawlActor } from "Crawl/actor";
+import { crawlMovie } from "crawl/movie";
+import { crawlTrailers } from "crawl/trailer";
 
 export const baseUrl = "https://www.imdb.com";
 
 const start = () => {
+  console.log("start");
   request
     .get("https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm")
     .then((data: any) => {
@@ -31,9 +32,25 @@ const start = () => {
     .catch((err: any) => console.log("err", err));
 };
 
+const initDirectory = () => {
+  const imagePath =
+    (process.env.PUBLIC_PATH || "") + (process.env.IMAGE_PATH || "");
+  const tempImagePath = process.env.IMAGE_TEMP;
+  if (imagePath && tempImagePath) {
+    fs.mkdir(imagePath, { recursive: true }, (err) => {
+      if (err) throw err;
+    });
+    fs.mkdir(tempImagePath, { recursive: true }, (err) => {
+      if (err) throw err;
+    });
+  }
+};
+
 const init = async () => {
+  initDirectory();
   await initDatabase();
   console.log("Connect DB Success");
+  await crawlTrailers();
   start();
 };
 
@@ -41,20 +58,7 @@ const test = async () => {
   console.log("initDatabase", initDatabase);
   await initDatabase();
   console.log("done database");
-  crawlMovie([
-    {
-      movieId: "tt13314558",
-      movieLink: "https://www.imdb.com/title/tt13314558/",
-    },
-    {
-      movieId: "tt1649418",
-      movieLink: "https://www.imdb.com/title/tt1649418/",
-    },
-    {
-      movieId: "tt1745960",
-      movieLink: "https://www.imdb.com/title/tt1745960/",
-    },
-  ]);
+  await crawlTrailers();
 };
 init();
 //test();

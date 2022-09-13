@@ -1,0 +1,48 @@
+@import 'shared/styles/const.scss';
+
+.ribbon {
+  &__bg {
+    transition: stroke 0.2s ease-in-out;
+  }
+
+  &__bg-ribbon {
+    fill: rgba(31, 31, 31, 0.75);
+    stroke: rgba(255, 255, 255, 0.08);
+  }
+
+  &__bg-hover {
+    opacity: 0;
+    fill: rgba(255, 255, 255, 0.32);
+    transition: all 0.3s ease;
+  }
+
+  &__bg-shadow {
+    fill: rgba(0, 0, 0, 0.32);
+  }
+
+  &:hover {
+    .ribbon__bg-ribbon {
+      stroke: none;
+    }
+
+    .ribbon__bg-hover {
+      opacity: 0.5;
+    }
+  }
+
+  &--yellow {
+    .ribbon__bg-ribbon {
+      fill: $yellow;
+    }
+
+    .ribbon__bg-hover {
+      fill: rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover {
+      .ribbon__bg-hover {
+        opacity: 0.5;
+      }
+    }
+  }
+}

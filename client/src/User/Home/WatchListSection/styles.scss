@@ -1,0 +1,9 @@
+.c-watchlist-message {
+  display: flex;
+  flex-direction: column;
+  padding: 80px 0;
+
+  & > div {
+    padding: 0.25rem 0;
+  }
+}

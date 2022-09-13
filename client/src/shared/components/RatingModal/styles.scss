@@ -1,0 +1,91 @@
+@import 'shared/styles/const.scss';
+
+.c-rating-modal {
+  background-color: rgb(31, 31, 31);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 4rem;
+  position: relative;
+
+  &__title {
+    font-size: 0.75rem;
+    line-height: 2rem;
+    letter-spacing: 0.16667em;
+    color: $yellow;
+  }
+
+  &__movie-name {
+    color: $white;
+    display: -webkit-box;
+    text-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    max-height: 3.2rem;
+    overflow: hidden;
+    margin: 0.5rem 0;
+  }
+
+  &__close-btn {
+    width: 40px;
+    height: 40px;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 25px;
+    position: absolute;
+    top: -40px;
+    right: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  &__rating-star-ctn {
+    margin: 0.5rem 0;
+  }
+
+  &__rating-star {
+    color: #aaa;
+    font-size: 1.5rem;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  &__rated-score {
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+
+    &.active {
+      transform: scale(1.4);
+      transition: all 0.3s ease;
+    }
+  }
+
+  &__rated-score-star {
+    font-size: 92px;
+    color: #5799ef;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%) scale(1);
+    transition: all 0.3s ease;
+  }
+
+  &__rated-score-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: $white;
+    font-size: 1.375rem;
+  }  
+}

@@ -22,16 +22,10 @@ class ActorRoleMovie extends BaseEntity {
   updatedDate: Date;
 
   @Column()
-  movieId: string;
+  movieId: number;
 
   @Column()
-  movieTitle: string;
-
-  @Column()
-  actorId: string;
-
-  @Column("varchar")
-  actorName: string;
+  actorId: number;
 
   @Column("varchar")
   role: string;

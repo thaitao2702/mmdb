@@ -8,7 +8,6 @@ import {
   JoinColumn,
   OneToMany,
   ManyToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import MovieDetails from "./MovieDetails";
@@ -16,10 +15,15 @@ import Director from "./Director";
 import ActorRoleMovie from "./ActorRoleMovie";
 import { MovieCategory } from "const/movie";
 
+import { constraint } from "utils/validation";
+
 @Entity()
 class Movie extends BaseEntity {
-  @PrimaryColumn()
-  id: string;
+  static validations = {
+    title: [constraint.required(), constraint.maxLength(100)],
+  };
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @CreateDateColumn({ type: "timestamp" })
   createdDate: Date;
@@ -36,10 +40,12 @@ class Movie extends BaseEntity {
   @Column("varchar", { nullable: true, array: true })
   writers: string[];
 
-  @Column("text")
+  @Column("text", { nullable: true })
   plot: string;
 
-  @OneToMany(() => ActorRoleMovie, (actorRoleMovie) => actorRoleMovie.movie)
+  @OneToMany(() => ActorRoleMovie, (actorRoleMovie) => actorRoleMovie.movie, {
+    nullable: true,
+  })
   actors: ActorRoleMovie[];
 
   @Column({ type: "date", nullable: true })
@@ -57,13 +63,13 @@ class Movie extends BaseEntity {
   @Column("varchar", { nullable: true })
   photos: string[];
 
-  @Column({ type: "float" })
+  @Column("float", { nullable: true })
   rating: number;
 
-  @Column()
+  @Column({ nullable: true })
   numberOfVotes: number;
 
-  @Column()
+  @Column({ nullable: true })
   runtime: number;
 
   @Column("varchar", { nullable: true, array: true })

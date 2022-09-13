@@ -1,0 +1,26 @@
+@import 'shared/styles/const.scss';
+
+.c-ribbon-btn {
+  position: relative;
+  cursor: pointer;
+
+  &__icon {
+    position: absolute;
+    top: -5%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    .ribbon__bg-ribbon {
+      stroke: none;
+    }
+
+    .ribbon__bg-hover {
+      opacity: 0.5;
+      fill: rgba(255, 255, 255, 0.32);
+      transition: all 0.3s ease;
+    }
+  }
+}

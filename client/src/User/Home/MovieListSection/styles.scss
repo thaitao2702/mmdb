@@ -1,0 +1,25 @@
+.c-movie-slide {
+  &-enter {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 170ms ease-out 0.1s, opacity 170ms ease-in 0.1s;
+  }
+}
+
+.c-page-loader {
+  &-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: all 0.3s ease;
+  }
+}

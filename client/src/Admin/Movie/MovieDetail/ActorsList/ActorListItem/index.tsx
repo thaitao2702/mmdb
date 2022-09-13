@@ -2,15 +2,13 @@ import React, { useRef, useState, useEffect, useCallback, Fragment } from 'react
 
 import Input from 'shared/components/Input';
 import { BtnIcon } from 'shared/components/Icon';
-import onOutSiteClick from 'shared/hooks/onOutSiteClick';
+import onOutSiteClick from 'shared/hooks/onOutSideClick';
 
 export interface IActorRoleMovie {
-  id?: string | number;
+  id?: number;
   actorId: number | string;
   avatar: string;
   actorName: string;
-  movieId: string | number;
-  movieTitle: string;
   role?: string;
 }
 

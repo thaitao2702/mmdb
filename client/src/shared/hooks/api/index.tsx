@@ -3,7 +3,7 @@ import { get } from 'lodash';
 import { useNavigate } from 'react-router-dom';
 
 import { api as normalApi, uploadFileApi } from 'shared/utils/api';
-import { removeAuthToken } from 'shared/utils/token';
+import { resetAuthData } from 'shared/utils/auth';
 import { IApiMethods } from 'shared/types';
 
 export interface IErrorResponse {
@@ -43,7 +43,7 @@ export const useGeneralApi = (type: ApiType, method: IApiMethods, url: string) =
   const navigate = useNavigate();
 
   const makeRequest = useCallback(
-    (data: { [key: string]: any }) =>
+    (data?: { [key: string]: any }) =>
       new Promise((resolve, reject) => {
         updateState((prevState) => ({ ...prevState, loading: true }));
         api(method, url, data).then(
@@ -57,14 +57,15 @@ export const useGeneralApi = (type: ApiType, method: IApiMethods, url: string) =
               errObj = get(error.response, 'data.error') || defaultError;
               const code = get(error.response, 'data.error.code');
               if (code && code === 'INVALID_TOKEN') {
-                removeAuthToken();
+                resetAuthData();
                 navigate('/');
               }
             } else {
               errObj = defaultError;
             }
-            reject(errObj);
+            console.log('errObj', errObj);
             updateState(() => ({ data: {}, loading: false, error: errObj }));
+            reject(errObj);
           },
         );
       }),

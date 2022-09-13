@@ -1,6 +1,6 @@
 @import 'shared/styles/const.scss';
 
-.admin-content-ctn {
+.l-admin-content-ctn {
   margin-top: $adminHeaderMenuHeight;
   margin-left: $adminSideMenuWidth;
   background-color: #eeeeee;
@@ -8,7 +8,7 @@
   padding: 20px 20px 40px 20px;
 }
 
-.admin-header-menu {
+.c-admin-header-menu {
   position: fixed;
   z-index: 10;
   top: 0;
@@ -19,14 +19,14 @@
   box-shadow: 0 2px 4px 0 rgb(43 43 43 / 10%);
 }
 
-.admin-header-logo {
+.c-admin-header-logo {
   background-color: $headerBackgroundColor;
   width: $adminSideMenuWidth;
   height: $adminHeaderMenuHeight;
   box-shadow: 0 4px 4px -4px rgb(0 0 0 / 10%);
 }
 
-.admin-side-menu {
+.c-admin-side-menu {
   position: fixed;
   z-index: 9;
   top: $adminHeaderMenuHeight;

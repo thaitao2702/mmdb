@@ -12,8 +12,8 @@ import ActorRoleMovie from "./ActorRoleMovie";
 
 @Entity()
 class Actor extends BaseEntity {
-  @PrimaryColumn()
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @CreateDateColumn({ type: "timestamp" })
   createdDate: Date;

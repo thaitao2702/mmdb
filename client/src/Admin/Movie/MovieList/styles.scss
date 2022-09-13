@@ -1,0 +1,23 @@
+@import 'shared/styles/const.scss';
+
+.c-admin-movie-list {
+  &__pagination {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-enter {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 170ms ease-out 0.1s, opacity 170ms ease-in 0.1s;
+  }
+
+  &-exit {
+    display: none;
+  }
+}

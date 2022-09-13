@@ -1,8 +1,100 @@
 @import 'shared/styles/const.scss';
 
-.menu-btn{
-    height: 36px;
-    padding: 0 12px;
+.c-menu-btn {
+  height: 36px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 
-    @include menu-btn;
+  @include menu-btn;
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.15s;
+  }
+
+  &--yellow {
+    background: $yellow;
+
+    &:hover {
+      background: $yellow;
+    }
+  }
+
+  &--big {
+    padding: 3px 35px;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &--sign-in {
+    background-color: $yellow;
+    color: $black;
+    font-size: 0.875rem;
+    padding: 0 1rem;
+
+    &:hover {
+      color: $black;
+      background-color: rgb(245 197 24 / 88%);
+      transition: all 0.2s ease;
+    }
+  }
+
+  &--hover-icon-lighter {
+    @include icon-hover-opacity-change;
+  }
+
+  &--light-grey {
+    background-color: rgba(255, 255, 255, 0.08);
+
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: white;
+      opacity: 0;
+      border-radius: 3px;
+    }
+
+    &:hover {
+      &:after {
+        opacity: 0.15;
+      }
+    }
+  }
+
+  &--color-blue {
+    color: #5799ef;
+
+    &:hover {
+      color: #5799ef;
+    }
+  }
+
+  &--color-hover-blue {
+    color: #5799ef;
+
+    &:hover {
+      color: #5799ef;
+      background-color: #5799ef14;
+      transition: all 0.2s ease;
+    }
+  }
+
+  &__icon {
+    &--light-grey {
+      color: $subTextColor;
+    }
+  }
+
+  &--disabled {
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+  }
 }

@@ -1,13 +1,19 @@
 @import 'shared/styles/const.scss';
 
-.search-input-ctn{
+.c-header-search {
+  &-ctn {
     height: 32px;
     background-color: $white;
     border-radius: 3px;
     padding: 0 10px;
     border: 2px solid transparent;
 
-    &.input-focus{
-        border: 2px solid $yellow;
+    &.input-focus {
+      border: 2px solid $yellow;
     }
+  }
+
+  &__input {
+    flex-grow: 1;
+  }
 }

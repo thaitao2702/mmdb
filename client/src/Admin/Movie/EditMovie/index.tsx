@@ -21,7 +21,7 @@ export interface IResponse {
 
 export interface IResponseMovieData {
   [key: string]: any;
-  id: string | number;
+  id: number;
   actors: IResponseActorData[];
   title: string;
   plot: string;
@@ -63,9 +63,7 @@ const handleActor = (data: IResponseActorData): IActorRoleMovie => ({
   id: data.id,
   actorId: data.actorId,
   actorName: data.actorName,
-  movieId: data.movieId,
   role: data.role,
-  movieTitle: data.movieTitle,
   avatar: handleImageUrl(data.actor.avatar),
 });
 
@@ -79,37 +77,55 @@ const EditMovie = () => {
   console.log(movieData);
   const { movieId } = useParams();
   const [{ loading: isLoadingMovie }, getMovie] = useApi('get', `${ApiUrl.movies}/${movieId}`);
+  const [{ loading: isDeleteingMovie }, deleteMovie] = useApi(
+    'delete',
+    `${ApiUrl.movies}/${movieId}`,
+  );
   const [{ loading: isUpdatingMovie }, updateMovie] = useUploadApi(
     'put',
     `${ApiUrl.movies}/${movieId}`,
   );
   const toast = useToast();
 
-  const submit = async () => {
+  const onSubmit = async () => {
     if (movieData) {
-      console.log('movie data', movieData);
-
       let formData = new FormData();
       Object.keys(movieData).forEach((key) => {
         const data = JSON.stringify((movieData as { [key: string]: any })[key]);
         formData.append(key, data);
       });
       if (movieData['uploadImage']) formData.append('image', movieData.uploadImage);
-      const response = (await updateMovie(formData)) as IResponseUpdateMovie;
-      toast.success('Update Movie Success');
-      console.log('response ', response);
-      setMovieData(response.data);
+      try {
+        const response = (await updateMovie(formData)) as IResponseUpdateMovie;
+        toast.success('Update Movie Success');
+        setMovieData(response.data);
+      } catch (error) {
+        if (error && error.message) toast.error(error.message);
+      }
+    }
+  };
+
+  const onDelete = async () => {
+    const { movieId } = movieData;
+    try {
+      await deleteMovie({ movieId });
+      toast.success('Delete Movie Success');
+    } catch (error) {
+      if (error && error.message) toast.error(error.message);
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
       if (movieId) {
-        const response = (await getMovie({ id: movieId })) as IResponse;
-        if (response.success) {
-          console.log('data ', response.data);
-          const processData = handleMovieData(response.data);
-          setMovieData(processData);
+        try {
+          const response = (await getMovie()) as IResponse;
+          if (response.success) {
+            const processData = handleMovieData(response.data);
+            setMovieData(processData);
+          }
+        } catch (error) {
+          if (error && error.message) toast.error(error.message);
         }
       }
     };
@@ -126,10 +142,10 @@ const EditMovie = () => {
           setMovieData={setMovieData}
           renderControlBtns={
             <BtnsBlock
-              onSave={submit}
-              onDelete={submit}
+              onSave={onSubmit}
+              onDelete={onDelete}
               isSaving={isUpdatingMovie}
-              isDeleteing={isUpdatingMovie}
+              isDeleteing={isDeleteingMovie}
             ></BtnsBlock>
           }
         ></MovieDetail>
@@ -153,12 +169,17 @@ const BtnsBlock = ({ onSave, isSaving, onDelete, isDeleteing }: IBtnsBlock) => {
       <SubmitBtn
         onClick={onSave}
         className="c-admin-btn--submit mr-9"
-        disabled={isSaving}
+        disabled={isSaving || isDeleteing}
         renderPrepend={isSaving && <Spinner size={25} color="white" className="mr-6"></Spinner>}
       >
         Update
       </SubmitBtn>
-      <SubmitBtn className="c-admin-btn--delete" onClick={onDelete} disabled={isDeleteing}>
+      <SubmitBtn
+        className="c-admin-btn--delete"
+        onClick={onDelete}
+        disabled={isDeleteing || isSaving}
+        renderPrepend={isDeleteing && <Spinner size={25} color="white" className="mr-6"></Spinner>}
+      >
         Delete
       </SubmitBtn>
     </div>

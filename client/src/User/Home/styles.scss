@@ -1,0 +1,68 @@
+@import 'shared/styles/const.scss';
+
+.c-home-group {
+  &__heading {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin: 1.5rem 0;
+    color: $yellow;
+
+    & + .c-home-section {
+      padding-top: 0;
+    }
+  }
+}
+
+.c-home-section {
+  padding: 1.5rem 0;
+  min-height: 580px;
+
+  &--empty {
+    min-height: 490px;
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__title-text {
+    position: relative;
+    padding-left: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    &:before {
+      background-color: $yellow;
+      border-radius: 2px;
+      display: block;
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 4px;
+    }
+
+    &:hover .c-inline-icon {
+      color: $yellow;
+    }
+  }
+
+  &__title-description {
+    color: $subTextColor;
+    line-height: 1.5rem;
+    letter-spacing: 0.03125em;
+    padding-top: 0.5rem;
+  }
+}
+
+.l-main-slide-wrapper {
+  &-enter {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 170ms ease-out 0.1s, opacity 170ms ease-in 0.1s;
+  }
+}

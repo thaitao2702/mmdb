@@ -4,7 +4,7 @@ import SelectWithSearch, { IOption } from 'shared/components/SelectWithSearch';
 import { InlineIcon } from 'shared/components/Icon';
 
 import { getKeyFromEnum } from 'shared/utils';
-import { Genre, GenreName } from 'shared/config/movieGenres';
+import { Genre, GenreName } from 'shared/const';
 
 interface ISelectGenreProps {
   [key: string]: any;

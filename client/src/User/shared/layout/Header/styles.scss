@@ -1,13 +1,92 @@
 @import 'shared/styles/const.scss';
 
-.header{    
-    background-color: $headerBackgroundColor;
-    color: $white;
-    font-size:14px;
-    padding: 5px;
+.c-main-menu {
+  background-color: $headerBackgroundColor;
+  color: $white;
+  font-size: 14px;
+  padding: 5px;
+  min-height: 56px;
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: $ctn-width;
+  }
+
+  &__item {
+    margin: 0 5px;
+  }
+
+  &__watchlist-btn-count {
+    color: $black;
+    background-color: $yellow;
+    font-size: 0.75rem;
+    margin-left: 0.3rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  &__sub-menu {
+    background-color: rgb(31, 31, 31);
+    padding: 0.5rem 0;
+    border-radius: 4px;
+
+    &-ctn {
+      transform-origin: top right;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      padding-top: 0.25rem;
+      z-index: 9;
+
+      &-enter {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      &-enter-active {
+        opacity: 1;
+        transform: scale(1);
+        transition: all 0.17s ease;
+      }
+
+      &-exit {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      &-exit-active {
+        transform: scale(0.8);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+    }
+
+    &-item {
+      align-items: center;
+      display: flex;
+      height: 3rem;
+      justify-content: flex-start;
+      padding: 0 1.5rem;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.03125em;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+    }
+  }
 }
 
-.main-menu-wrapper{
-    max-width: $ctn-width;
-    margin: auto;
+.l-main-content-wrapper {
+  max-width: $ctn-width;
+  margin: auto;
 }

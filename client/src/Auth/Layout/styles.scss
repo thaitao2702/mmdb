@@ -1,40 +1,43 @@
 @import 'shared/styles/const.scss';
 
-.before-login-ctn{
-    min-height: 100vh;
-    width: 100%;
-    background-color: $white;
-    font-family: Arial,sans-serif;
-    font-size: 13px;
+.l-before-login-ctn {
+  min-height: 100vh;
+  width: 100%;
+  background-color: $white;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
 
-    .content-ctn{
-        @include alignCenterByWidth($loginBoxWidth);
+.l-before-login-content-ctn {
+  @include alignCenterByWidth($loginBoxWidth);
+}
+
+.c-before-login {
+  &-logo-ctn {
+    padding: 20px 0;
+  }
+
+  &-login,
+  &-register {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+  }
+
+  &-footer {
+    font-size: 11px;
+
+    .footer-links {
+      text-align: center;
+
+      a {
+        margin: 0 10px;
+      }
     }
 
-    .before-login-logo-ctn{
-        padding: 20px 0;
+    .row {
+      line-height: 1.465;
+      text-align: center;
     }
-
-    .before-login-box-ctn{
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 14px 18px;
-    }
-
-    .before-login-footer{
-        font-size: 11px;
-
-        .footer-links{
-            text-align: center;
-            
-            a{
-                margin: 0 10px;
-            }
-        }
-
-        .row{
-            line-height: 1.465;
-            text-align: center;;
-        }
-    }
+  }
 }

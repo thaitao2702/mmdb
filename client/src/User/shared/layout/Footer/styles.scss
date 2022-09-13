@@ -1,0 +1,37 @@
+.c-round-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.c-footer {
+  padding: 1rem 0;
+  margin-top: 2rem;
+
+  &__social-network-link {
+    margin: 0 0.5rem;
+  }
+
+  &__link {
+    padding: 0.5rem;
+  }
+}
+
+.l-footer__row {
+  &--copyright {
+    padding: 1rem 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+  }
+}

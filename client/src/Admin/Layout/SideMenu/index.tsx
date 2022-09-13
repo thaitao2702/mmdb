@@ -4,14 +4,14 @@ import MenuCategory from './MenuItem';
 
 export const SideMenu = () => {
   return (
-    <div className="admin-side-menu">
+    <div className="c-admin-side-menu">
       <>
         <MenuCategory
           heading={{ title: 'Movies', to: '/admin', icon: 'movie' }}
           subItems={[
-            { title: 'All Movies', to: '/admin/movie/movies' },
-            { title: 'Add New Movie', to: '/admin/movie/new-movie' },
-            { title: 'Movies Lists', to: '/admin/movie/movie-list' },
+            { title: 'All Movies', to: '/admin/movies' },
+            { title: 'Add New Movie', to: '/admin/movies/new-movie' },
+            { title: 'Movies Lists', to: '/admin/movies/movie-list' },
           ]}
         />
         <MenuCategory

@@ -4,9 +4,23 @@
   color: #535353;
 
   &__title {
-    font-size: 12px;
-    letter-spacing: 2px;
+    font-size: 0.75rem;
+    letter-spacing: 0.16667em;
     font-weight: 700;
+    margin-bottom: 0.25rem;
+    text-align: center;
+  }
+
+  &__content {
+    cursor: pointer;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    height: 40px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
   }
 
   &__rating-value {
@@ -16,5 +30,13 @@
 
   &__vote-count {
     font-size: 13px;
+  }
+
+  &--dark {
+    color: rgba(255, 255, 255, 0.7);
+
+    .c-imdb-rating__rating-value {
+      color: $white;
+    }
   }
 }

@@ -1,0 +1,40 @@
+.c-slide {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+
+  &__frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    transition: all 0.5s ease;
+    transform: translateX(0);
+    z-index: 9;
+
+    &--prev {
+      transform: translateX(-100%);
+    }
+
+    &--next {
+      transform: translateX(100%);
+    }
+
+    &--dummy {
+      position: relative;
+      transform: translateX(100%);
+      z-index: 1;
+    }
+  }
+
+  &__item {
+    padding: 0 10px;
+  }
+
+  &__item-img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,87 @@
+@import 'shared/styles/const.scss';
+
+.c-main-slide {
+  width: 66%;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1000/645;
+  margin: 0 8px;
+
+  &-item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 500ms ease;
+    transform: translateX(0);
+    &--next {
+      transform: translateX(100%);
+    }
+
+    &--prev {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.c-side-slide {
+  width: 33%;
+  color: $white;
+  margin: 0 4px;
+
+  &__content {
+    background: linear-gradient(
+      0deg,
+      transparent 0%,
+      transparent 50%,
+      rgba(18, 18, 18, 0.7) 78%,
+      rgb(18, 18, 18) 100%
+    );
+  }
+
+  &__heading {
+    color: $yellow;
+    font-size: 20px;
+    font-weight: 700;
+    height: 52px;
+    padding: 4px 0;
+  }
+
+  &__bottom-link {
+    padding: 16px 16px 0;
+    font-size: 20px;
+    font-weight: 700;
+
+    & > a:hover {
+      color: $yellow;
+    }
+  }
+}
+
+.c-slide-btn {
+  border-radius: 4px;
+  background: rgba(18, 18, 18, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  position: absolute;
+  padding: 20px 12px;
+  cursor: pointer;
+  color: $white;
+  font-size: 24px;
+  z-index: 9;
+
+  &:hover {
+    color: $yellow;
+    transition: color 0.3s ease;
+  }
+
+  &--next {
+    top: 30%;
+    right: 0;
+  }
+
+  &--prev {
+    top: 30%;
+    left: 0;
+  }
+}

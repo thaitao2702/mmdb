@@ -10,3 +10,9 @@ export enum MovieCategory {
   ADVENTURE = "Adventure",
   FANTASY = "Fantasy",
 }
+
+export enum MovieList {
+  FANFAVORITES = "fanFavorites",
+  TOPPICK = "topPicks",
+  WATCHLIST = "watchList",
+}

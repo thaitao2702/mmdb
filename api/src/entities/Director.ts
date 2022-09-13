@@ -6,13 +6,14 @@ import {
   UpdateDateColumn,
   OneToMany,
   PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import Movie from "./Movie";
 
 @Entity()
 class Actor extends BaseEntity {
-  @PrimaryColumn()
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @CreateDateColumn({ type: "timestamp" })
   createdDate: Date;
