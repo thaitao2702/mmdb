@@ -1,4 +1,4 @@
-import { User, MovieRating, Movie } from "entities";
+import { User, MovieRating } from "entities";
 import {
   createEntity,
   updateEntity,

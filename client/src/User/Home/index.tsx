@@ -16,9 +16,9 @@ import { handleImageUrl } from 'shared/utils';
 import { MovieList } from 'shared/const';
 import { MovieUpdatingContext } from 'shared/context';
 import { reducer, IMoviesUpdatingState } from 'shared/reducer/homeMoviesList';
-import { useUser } from 'User/shared/layout';
+import { useUser } from 'User/Layout';
 
-import { IUser } from 'User/shared/layout';
+import { IUser } from 'User/Layout';
 
 export interface ITrailer {
   screenShot: string;

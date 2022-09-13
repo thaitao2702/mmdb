@@ -12,7 +12,7 @@ import MovieList from 'Admin/Movie/MovieList';
 import EditMovie from 'Admin/Movie/EditMovie';
 import Movie from 'User/Movie';
 import Home from 'User/Home';
-import Layout from 'User/shared/layout';
+import Layout from 'User/Layout';
 import BeforeLoginLayout from 'Auth/Layout';
 import ErrorPage from 'App/ErrorPage';
 

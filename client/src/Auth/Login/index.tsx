@@ -12,6 +12,7 @@ import { useApi } from 'shared/hooks/api';
 import useToast from 'shared/hooks/toast';
 import { ApiUrl } from 'shared/config/apiUrl';
 import { storeAuthData } from 'shared/utils/auth';
+import { UserRole } from 'shared/const';
 import { IRegisterResponse } from 'auth/Register';
 
 interface IFormValue {
@@ -64,7 +65,10 @@ const Login = () => {
               const data = (await callLoginApi(value)) as ILoginResponse;
               persistLoginData(data);
               Toast.success('Login success');
-              setTimeout(() => navigate('/'), 500);
+              setTimeout(() => {
+                if (data.userRole === UserRole.Admin) navigate('/admin/movies');
+                else navigate('/');
+              }, 500);
             } catch (err) {
               console.log('err', err);
               Toast.error((err as { message: string }).message);

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Outlet, useOutletContext } from 'react-router-dom';
 
-import Footer from 'User/shared/layout/Footer';
-import Header from 'User/shared/layout/Header';
+import Footer from 'User/Layout/Footer';
+import Header from 'User/Layout/Header';
 
 import { useApi } from 'shared/hooks/api';
 import { ApiUrl } from 'shared/config/apiUrl';

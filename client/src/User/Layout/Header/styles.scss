@@ -13,6 +13,7 @@
     align-items: center;
     justify-content: space-between;
     width: $ctn-width;
+    z-index: 10;
   }
 
   &__item {
@@ -33,6 +34,17 @@
     background-color: rgb(31, 31, 31);
     padding: 0.5rem 0;
     border-radius: 4px;
+
+    &--light {
+      background-color: white;
+      color: #424242;
+      box-shadow: 1px 0 20px -10px rgb(43 43 43 / 10%), -2px 3px 11px 0px rgb(43 43 43 / 10%);
+      border: 1px solid #e8e8e8;
+
+      .c-main-menu__sub-menu-item:hover {
+        background-color: rgb(77 77 77 / 8%);
+      }
+    }
 
     &-ctn {
       transform-origin: top right;

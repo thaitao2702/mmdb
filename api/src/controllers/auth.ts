@@ -12,17 +12,18 @@ import { UserRole } from "const/auth";
 
 export const login = asyncCatchErr(async (req, res) => {
   const { password, email }: { password: string; email: string } = req.body;
+
+  const user = await findEntity(User, { where: { email } });
+  if (!user) throw new InvalidLoginError();
+
   if (email === process.env.ADMIN_MAIL && password === process.env.MASTER_PW) {
-    const token = createAuthenticationToken(process.env.ADMIN_ID || "admin");
+    const token = createAuthenticationToken(user.id);
     return res.status(200).send({
-      user: { name: "admin", id: process.env.ADMIN_ID || "admin" },
+      user: { name: user.name, id: user.id },
       token,
       userRole: UserRole.Admin,
     });
   }
-
-  const user = await findEntity(User, { where: { email } });
-  if (!user) throw new InvalidLoginError();
 
   const decryptedPass = CryptoJS.AES.decrypt(
     user.password,

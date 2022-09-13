@@ -1,0 +1,38 @@
+@import 'shared/styles/const.scss';
+
+.c-header-nav-search-result {
+  padding: 0.5rem;
+
+  &__img {
+    width: 48px;
+    & > img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__info {
+    padding: 0.5rem 1rem;
+  }
+
+  &__title {
+    line-height: 1.5rem;
+    letter-spacing: 0.03125em;
+    color: $white;
+  }
+
+  &__metadata {
+    line-height: 1.25rem;
+    letter-spacing: 0.01786em;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    text-decoration: underline;
+  }
+
+  + .c-header-nav-search-result {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+  }
+}

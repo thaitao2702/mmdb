@@ -13,7 +13,6 @@ const useOnOutside = (
     const $listeningElement = ($listeningElementRef || {}).current;
 
     if (isListening && $listeningElement) {
-      console.log('islistening');
       $listeningElement.addEventListener('mouseleave', handleMouseOut);
     }
     return () => {

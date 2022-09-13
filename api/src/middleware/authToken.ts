@@ -11,7 +11,7 @@ export const authorizePrivateRoute = asyncCatchErr(async (req, res, next) => {
 
   const tokenDecoded = verifyToken(token);
   const userId = tokenDecoded.id;
-  if (userId === (process.env.ADMIN_ID || "admin")) next();
+  if (userId) next();
 
   if (!userId) {
     throw new InvalidTokenError("Authentication token is invalid.");
@@ -33,6 +33,7 @@ export const authorizePublicRoute = asyncCatchErr(async (req, res, next) => {
   } else {
     const tokenDecoded = verifyToken(token);
     const userId = tokenDecoded.id;
+    if (userId == (Number(process.env.ADMIN_ID) || 0)) next();
 
     if (!userId) {
       throw new InvalidTokenError("Authentication token is invalid.");

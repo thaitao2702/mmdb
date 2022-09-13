@@ -14,7 +14,7 @@ import RatingModal from 'shared/components/RatingModal';
 import { useApi } from 'shared/hooks/api';
 import { ApiUrl } from 'shared/config/apiUrl';
 import useToast from 'shared/hooks/toast';
-import { useUser } from 'User/shared/layout';
+import { useUser } from 'User/Layout';
 import { handleImageUrl } from 'shared/utils';
 
 import { IMovie, IMovieExtraInfo } from 'User/Home';

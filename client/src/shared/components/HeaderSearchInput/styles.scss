@@ -7,6 +7,10 @@
     border-radius: 3px;
     padding: 0 10px;
     border: 2px solid transparent;
+    position: relative;
+
+    &.active {
+    }
 
     &.input-focus {
       border: 2px solid $yellow;
@@ -15,5 +19,14 @@
 
   &__input {
     flex-grow: 1;
+  }
+
+  &__result {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: rgb(31, 31, 31);
+    margin-top: 2px;
+    left: 0;
   }
 }

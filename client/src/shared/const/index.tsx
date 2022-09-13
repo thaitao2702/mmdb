@@ -46,3 +46,8 @@ export enum MovieList {
   TOPPICK = 'topPicks',
   WATCHLIST = 'watchList',
 }
+
+export enum DataType {
+  MOVIE = 'movie',
+  ACTOR = ' actor',
+}

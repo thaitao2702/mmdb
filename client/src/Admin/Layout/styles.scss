@@ -8,22 +8,45 @@
   padding: 20px 20px 40px 20px;
 }
 
-.c-admin-header-menu {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: $adminHeaderMenuHeight;
-  background-color: $white;
-  box-shadow: 0 2px 4px 0 rgb(43 43 43 / 10%);
-}
+.c-admin-header {
+  &-menu {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $adminHeaderMenuHeight;
+    background-color: $white;
+    box-shadow: 0 2px 4px 0 rgb(43 43 43 / 10%);
+    display: flex;
+    align-items: center;
 
-.c-admin-header-logo {
-  background-color: $headerBackgroundColor;
-  width: $adminSideMenuWidth;
-  height: $adminHeaderMenuHeight;
-  box-shadow: 0 4px 4px -4px rgb(0 0 0 / 10%);
+    &__search-ctn {
+      margin-left: 2rem;
+      flex: 0 1 500px;
+    }
+  }
+
+  &-profile-btn {
+    padding: 0.35rem 1rem;
+    display: flex;
+    border-radius: 4px;
+    align-items: center;
+    cursor: pointer;
+    color: #585858;
+    position: relative;
+
+    &:hover {
+      background-color: rgb(77 77 77 / 8%);
+    }
+  }
+
+  &-logo {
+    background-color: $headerBackgroundColor;
+    width: $adminSideMenuWidth;
+    height: $adminHeaderMenuHeight;
+    flex-shrink: 0;
+  }
 }
 
 .c-admin-side-menu {

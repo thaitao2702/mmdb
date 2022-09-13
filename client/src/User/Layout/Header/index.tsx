@@ -6,7 +6,7 @@ import './styles.scss';
 
 import { MenuIcon, AddToWatchListIcon, IMDbProIcon, Logo, UserIcon } from 'shared/svgs';
 import { MenuBtn } from 'shared/components/Btn';
-import SearchInput from './SearchInput';
+import SearchInput from 'shared/components/HeaderSearchInput';
 import { InlineIcon } from 'shared/components/Icon';
 
 import useToast from 'shared/hooks/toast';

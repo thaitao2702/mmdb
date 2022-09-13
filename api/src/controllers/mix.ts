@@ -1,50 +1,54 @@
-import { Movie, Director, Actor } from "entities";
-import ActorRoleMovie from "entities/ActorRoleMovie";
-import {
-  createEntity,
-  deleteEntity,
-  findEntities,
-  findEntity,
-  findEntityById,
-  validateAndSaveEntity,
-  createListById,
-} from "utils/entityHandler";
-import {
-  updateList as updateActorRoleMovieList,
-  createActorRoleMovieList,
-} from "./actorRoleMovie";
+import { sortBy, last,  shuffle } from "lodash";
+
+import { Movie,  Actor } from "entities";
+import { dataType } from "const";
 import { asyncCatchErr } from "utils/asyncCatchErr";
-import { EntityNotFoundError } from "errors/customErrors";
-import { MovieList } from "const/movie";
-import {
-  moveFile,
-  deleteFile,
-  generateFilePath,
-  isSamePath,
-  servePathToRealPath,
-} from "utils/file";
 
 export const findAll = asyncCatchErr(async (req, res) => {
   const { searchValue } = req.query;
-  console.log("searchValue", searchValue);
 
   let actorWhereSQL = "actor.name ILIKE :searchValue";
 
   const actors = await Actor.createQueryBuilder("actor")
     .select()
-    .leftJoinAndSelect("actor.movies", "movie")
+    .leftJoinAndSelect("actor.movies", "actorRoleMovie")
+    .leftJoinAndSelect("actorRoleMovie.movie", "movie")
     .where(actorWhereSQL, { searchValue: `%${searchValue}%` })
     .take(10)
     .getMany();
+
+  const processedActors = actors.map((actor) => ({
+    ...actor,
+    dataType: dataType.ACTOR,
+    mostPopularMovie: (
+      last(sortBy(actor.movies, [(movie) => movie.movie.numberOfVotes])) || {
+        movie: null,
+      }
+    ).movie,
+  }));
 
   let movieWhereSQL = "movie.title ILIKE :searchValue";
 
   const movies = await Movie.createQueryBuilder("movie")
     .select()
-    .leftJoinAndSelect("movie.actors", "actor")
+    .leftJoinAndSelect("movie.actors", "actorRoleMovie")
+    .leftJoinAndSelect("actorRoleMovie.actor", "actor")
     .where(movieWhereSQL, { searchValue: `%${searchValue}%` })
     .take(10)
     .getMany();
 
-  res.status(200).send({ success: true, data: { actors, movies } });
+  const processedMovies = movies.map((movie) => ({
+    ...movie,
+    actors: movie.actors
+      .slice(0, 2)
+      .map((actorRoleMovie) => actorRoleMovie.actor),
+    dataType: dataType.MOVIE,
+  }));
+
+  const randomReturnData = shuffle([
+    ...processedMovies,
+    ...processedActors,
+  ]).slice(0, 10);
+
+  res.status(200).send({ success: true, data: randomReturnData });
 });

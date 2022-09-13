@@ -23,6 +23,11 @@
     }
   }
 
+  &--bg-white {
+    background-color: transparent;
+    color: $black;
+  }
+
   &--big {
     padding: 3px 35px;
   }
