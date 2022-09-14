@@ -1,11 +1,9 @@
 import { Movie, User, Director } from "entities";
 import ActorRoleMovie from "entities/ActorRoleMovie";
 import {
-  createEntity,
   deleteEntity,
   findEntities,
   findEntity,
-  findEntityById,
   validateAndSaveEntity,
   createListById,
 } from "utils/entityHandler";

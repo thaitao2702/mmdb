@@ -3,7 +3,6 @@ import { User } from "entities";
 
 export const initAdmin = async () => {
   const adminInstance = await findEntity(User, { where: { name: "admin" } });
-  console.log("admininstance", adminInstance);
   if (!adminInstance) {
     const adminData = {
       name: "admin",
