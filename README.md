@@ -9,7 +9,7 @@
 - Sign up new user account, login 
 - User account allowed to add movie to watch list, rate movie
 
-## Setting up development environment ðŸ› 
+## Setting up development environment  
 
 - Install [postgreSQL](https://www.postgresql.org/) and create a database named `mmdb`.
 - git clone `https://github.com/thaitao2702/mmdb.git`
